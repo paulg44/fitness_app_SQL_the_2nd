@@ -1,17 +1,21 @@
 // Server
-
-const express = require("express");
-const { Pool } = require("pg");
-const dotenv = require("dotenv");
-const cors = require("cors");
+import express from "express";
+import pkg from "pg";
+import dotenv from "dotenv";
+import cors from "cors";
 
 dotenv.config();
 
+const { Pool } = pkg;
+
 const app = express();
-const port = 5001;
+const port = 4000;
+console.log(process.env.REACT_APP_PORT);
+const connectionString =
+  "postgres://axitdbae:1-Qur9qtBb474q2jodqWCnmYFEDnY5XJ@horton.db.elephantsql.com/axitdbae";
 
 const pool = new Pool({
-  connectionString: process.env.DB_CONNECTION_STRING,
+  connectionString,
   ssl: {
     rejectUnauthorized: false,
   },

@@ -28,7 +28,7 @@ function Logs() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const logsResponse = await fetch("http://localhost:5001/api/logs");
+        const logsResponse = await fetch("/api/logs");
         const logsData = await logsResponse.json();
         setLogsData(logsData);
       } catch (error) {
