@@ -1,10 +1,16 @@
 // Server
 
 const express = require("express");
-const app = express();
+const { Pool } = require("pg");
 
-app.get("/api", (req, res) => {
-  res.json({ users: ["userOne", "userTwo", "userThree"] });
+const app = express();
+const port = process.env.PORT;
+
+const pool = new Pool({
+  connectionString: process.env.DB_CONNECTION_STRING,
+  ssl: {
+    rejectUnauthorized: false,
+  },
 });
 
 app.listen(5000, () => {
