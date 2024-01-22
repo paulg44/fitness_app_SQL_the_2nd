@@ -13,20 +13,29 @@ interface Log {
   description: string;
 }
 
-interface LogsError {
-  message: string;
-  details?: any;
-}
+// interface LogsError {
+//   message: string;
+//   details?: any;
+// }
 
 function Logs() {
   // State
-  // const [logsData, setLogsData] = useState<Log[]>([]);
+  const [logsData, setLogsData] = useState<Log[]>([]);
   // const [error, setError] = useState<LogsError | null>(null);
 
   // Retrieve data
 
   useEffect(() => {
-    // readAllData();
+    const fetchData = async () => {
+      try {
+        const logsResponse = await fetch("http://localhost:5001/api/logs");
+        const logsData = await logsResponse.json();
+        setLogsData(logsData);
+      } catch (error) {
+        console.error("Error fetching data", error);
+      }
+    };
+    fetchData();
   }, []);
   return (
     <Table>
@@ -41,16 +50,17 @@ function Logs() {
         </tr>
       </thead>
       <tbody>
-        {/* {logsData.map((log) => (
-          <tr key={log.id}>
-            <td>{log.date}</td>
-            <td>{log.distance}</td>
-            <td>{log.duration}</td>
-            <td>{log.pace}</td>
-            <td>{log.surface}</td>
-            <td>{log.description}</td>
-          </tr>
-        ))} */}
+        {Array.isArray(logsData) &&
+          logsData.map((log) => (
+            <tr key={log.id}>
+              <td>{log.date}</td>
+              <td>{log.distance}</td>
+              <td>{log.duration}</td>
+              <td>{log.pace}</td>
+              <td>{log.surface}</td>
+              <td>{log.description}</td>
+            </tr>
+          ))}
       </tbody>
       {/* If Error */}
       {/* {error && (
