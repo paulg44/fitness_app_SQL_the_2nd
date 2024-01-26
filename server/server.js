@@ -6,16 +6,12 @@ import cors from "cors";
 
 dotenv.config();
 
-import logsRoutes from "./routes/logsRoutes";
+import { logsRoutes } from "./routes/logsRoutes.js";
 
 const { Pool } = pkg;
 
 const app = express();
 const port = process.env.REACT_APP_PORT;
-console.log(process.env.REACT_APP_PORT);
-// const port = 4000;
-// const connectionString =
-//   "postgres://axitdbae:1-Qur9qtBb474q2jodqWCnmYFEDnY5XJ@horton.db.elephantsql.com/axitdbae";
 const connectionString = process.env.REACT_APP_DB_STRING;
 
 export const pool = new Pool({

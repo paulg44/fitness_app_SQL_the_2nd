@@ -39,6 +39,7 @@ function Logs() {
   }, []);
   return (
     <Table>
+      {/* <div>{logsData}</div> */}
       <thead>
         <tr>
           <th>Date</th>
@@ -62,14 +63,6 @@ function Logs() {
             </tr>
           ))}
       </tbody>
-      {/* If Error */}
-      {/* {error && (
-        <tfoot>
-          <tr>
-            <td>Error: {error.message}</td>
-          </tr>
-        </tfoot>
-      )} */}
     </Table>
   );
 }
