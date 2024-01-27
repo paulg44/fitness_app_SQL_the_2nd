@@ -6,6 +6,7 @@ import { pool } from "../server.js";
 export async function getAllLogs() {
   const client = await pool.connect();
   const getAllLogs = await client.query("SELECT * FROM testlogs");
+  client.release();
   return getAllLogs;
 }
 
@@ -14,9 +15,10 @@ export async function enterLog(body) {
   const { id, date, distance, duration, pace, surface, description } = body;
   const client = await pool.connect();
   const addLog = await client.query(
-    "INSERT INTO testlogs (id, date, distance, duration, pace, surface, description) VALUES ($1, $2, $3, $4, $5, $6, $7)",
-    [id, date, distance, duration, pace, surface, description]
+    "INSERT INTO testlogs ( date, distance, duration, pace, surface, description) VALUES ($1, $2, $3, $4, $5, $6)",
+    [date, distance, duration, pace, surface, description]
   );
+  // I had to release the client otherwise I had too many requests
   client.release();
   return addLog;
 }
