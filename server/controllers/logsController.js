@@ -15,8 +15,14 @@ export async function getAllLogs(req, res) {
 }
 
 // Enter log into database
-export async function enterLog(re, res) {
-  const data = req.body;
-  const logs = await logsModel.enterLog(data);
-  console.log(`Success, payload ${logs.rows}`);
+export async function enterLog(req, res) {
+  try {
+    const data = req.body;
+    const logs = await logsModel.enterLog(data);
+    console.log(`Success, payload ${logs.rows}`);
+    res.status(200).json(logs.rows);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
 }

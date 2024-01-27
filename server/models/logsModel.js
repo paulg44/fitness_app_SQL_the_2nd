@@ -10,10 +10,13 @@ export async function getAllLogs() {
 }
 
 // Add a log to database
-export async function enterLog() {
+export async function enterLog(body) {
+  const { id, date, distance, duration, pace, surface, description } = body;
   const client = await pool.connect();
   const addLog = await client.query(
-    "INSERT INTO testlogs (date, distance, duration, pace, surface, description) VALUES ($1, %2, $3, $4, $5, $6"
+    "INSERT INTO testlogs (id, date, distance, duration, pace, surface, description) VALUES ($1, $2, $3, $4, $5, $6, $7)",
+    [id, date, distance, duration, pace, surface, description]
   );
+  client.release();
   return addLog;
 }

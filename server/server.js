@@ -26,19 +26,6 @@ app.use(cors());
 
 app.use("/api/logs", logsRoutes);
 
-// app.get("/api/logs", async (req, res) => {
-//   try {
-//     const client = await pool.connect();
-//     const result = await client.query("SELECT * FROM testlogs");
-//     res.json(result.rows);
-//   } catch (error) {
-//     console.error("Error executing query", error);
-//     res
-//       .status(500)
-//       .json({ error: "Internal Server Error", details: error.message });
-//   }
-// });
-
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });

@@ -1,6 +1,6 @@
 // Enter Log Form Component
 
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { Form, Button } from "react-bootstrap";
 // import { useNavigate } from "react-router-dom";
 
@@ -69,9 +69,27 @@ function EnterLogForm() {
   }
 
   // Add run to database
+  async function handleAddLog(e: any) {
+    e.preventDefault();
+
+    await fetch("/api/logs", {
+      method: "POST",
+      headers: {
+        "Content-TYpe": "application/json",
+      },
+      body: JSON.stringify({
+        date: enterDate,
+        distance: enterDistance,
+        duration: enterDuration,
+        pace: enterPace,
+        surface: selectedSurface,
+        description: enterDescription,
+      }),
+    });
+  }
 
   return (
-    <Form>
+    <Form onSubmit={handleAddLog}>
       <Form.Group className="mb-3" controlId="formEnterDate">
         <Form.Label>Enter Date</Form.Label>
         <Form.Control
