@@ -18,6 +18,7 @@ function EnterLogForm() {
   // Possibly change these 2 states from a string
   const [enterDistance, setEnterDistance] = useState<number>(0);
   const [enterDuration, setEnterDuration] = useState<number>(0);
+  const [enterPace, setEnterPace] = useState<number>(0);
   const [selectedSurface, setSelectedSurface] = useState("");
   const [enterDescription, setEnterDescription] = useState("");
 
@@ -43,6 +44,14 @@ function EnterLogForm() {
     const value = e.target.value;
     setEnterDuration(parseFloat(value));
     console.log(enterDuration);
+  }
+
+  // Handle Pace
+  function handlePace(e: ChangeEvent<HTMLInputElement>) {
+    e.preventDefault();
+    const value = e.target.value;
+    setEnterPace(parseFloat(value));
+    console.log(enterPace);
   }
 
   // Handle Surface
@@ -85,6 +94,14 @@ function EnterLogForm() {
           type="text"
           placeholder="Enter Duration"
           onChange={handleDuration}
+        />
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="formEnterPace">
+        <Form.Label>Enter Activity Pace</Form.Label>
+        <Form.Control
+          type="text"
+          placeholder="Enter Pace"
+          onChange={handlePace}
         />
       </Form.Group>
       <Form.Group className="mb-3" controlId="formEnterSurface">
