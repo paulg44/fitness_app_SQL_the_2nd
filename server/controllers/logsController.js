@@ -1,3 +1,5 @@
+// Handle the HTTP requests
+
 import * as logsModel from "../models/logsModel.js";
 
 // Retrieve all logs from the database

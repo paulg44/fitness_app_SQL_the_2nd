@@ -2,6 +2,8 @@
 
 import express from "express";
 
+// Routes for database POST, PUT, GET, PATCH
+
 import * as logsController from "../controllers/logsController.js";
 
 export const logsRoutes = express.Router();

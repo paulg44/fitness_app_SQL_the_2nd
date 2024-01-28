@@ -1,6 +1,6 @@
 // Enter Log Form Component
 
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { Form, Button } from "react-bootstrap";
 // import { useNavigate } from "react-router-dom";
 
@@ -74,9 +74,11 @@ function EnterLogForm() {
 
     await fetch("/api/logs", {
       method: "POST",
+      // Indicates content being sent or received is json data
       headers: {
         "Content-TYpe": "application/json",
       },
+      // Converts a JavaScript value to a JSON string
       body: JSON.stringify({
         date: enterDate,
         distance: enterDistance,

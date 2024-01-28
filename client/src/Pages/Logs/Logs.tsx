@@ -1,6 +1,6 @@
 // Logs Page Component
 
-import { Table } from "react-bootstrap";
+import { Button, Table } from "react-bootstrap";
 import { useEffect, useState } from "react";
 
 interface Log {
@@ -24,7 +24,6 @@ function Logs() {
   // const [error, setError] = useState<LogsError | null>(null);
 
   // Retrieve data
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -37,9 +36,11 @@ function Logs() {
     };
     fetchData();
   }, []);
+
+  // Delete an entry in logs table
+
   return (
     <Table>
-      {/* <div>{logsData}</div> */}
       <thead>
         <tr>
           <th>Date</th>
@@ -60,6 +61,7 @@ function Logs() {
               <td>{log.pace}</td>
               <td>{log.surface}</td>
               <td>{log.description}</td>
+              <Button type="submit">X</Button>
             </tr>
           ))}
       </tbody>
