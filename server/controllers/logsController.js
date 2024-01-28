@@ -28,3 +28,14 @@ export async function enterLog(req, res) {
     res.status(500).json({ error: "Internal server error" });
   }
 }
+
+// Delete entry from table
+export async function deleteEntry(req, res) {
+  try {
+    const logs = await logsModel.deleteEntry();
+    console.log(`Success, payload: ${logs}`);
+    res.status(200);
+  } catch (error) {
+    console.error(error);
+  }
+}

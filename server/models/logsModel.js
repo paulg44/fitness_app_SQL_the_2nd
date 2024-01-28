@@ -12,7 +12,7 @@ export async function getAllLogs() {
 
 // Add a log to database
 export async function enterLog(body) {
-  const { id, date, distance, duration, pace, surface, description } = body;
+  const { date, distance, duration, pace, surface, description } = body;
   const client = await pool.connect();
   const addLog = await client.query(
     "INSERT INTO testlogs ( date, distance, duration, pace, surface, description) VALUES ($1, $2, $3, $4, $5, $6)",
@@ -21,4 +21,13 @@ export async function enterLog(body) {
   // I had to release the client otherwise I had too many requests
   client.release();
   return addLog;
+}
+
+// Delete a record from database
+export async function deleteEntry() {
+  const client = await pool.connect();
+  const deleteEntry = await client.query(
+    "DELETE FROM testlogs WHERE pace = 100"
+  );
+  return deleteEntry;
 }

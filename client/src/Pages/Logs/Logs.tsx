@@ -38,6 +38,16 @@ function Logs() {
   }, []);
 
   // Delete an entry in logs table
+  async function deleteEntryFromTable(e: any) {
+    e.preventDefault();
+
+    await fetch("/api/logs", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  }
 
   return (
     <Table>
@@ -61,7 +71,9 @@ function Logs() {
               <td>{log.pace}</td>
               <td>{log.surface}</td>
               <td>{log.description}</td>
-              <Button type="submit">X</Button>
+              <Button type="submit" onClick={deleteEntryFromTable}>
+                X
+              </Button>
             </tr>
           ))}
       </tbody>

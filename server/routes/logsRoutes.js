@@ -11,3 +11,5 @@ export const logsRoutes = express.Router();
 logsRoutes.get("/", logsController.getAllLogs);
 
 logsRoutes.post("/", logsController.enterLog);
+
+logsRoutes.delete("/", logsController.deleteEntry);
