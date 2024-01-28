@@ -24,10 +24,10 @@ export async function enterLog(body) {
 }
 
 // Delete a record from database
-export async function deleteEntry() {
+export async function deleteEntry(id) {
   const client = await pool.connect();
-  const deleteEntry = await client.query(
-    "DELETE FROM testlogs WHERE pace = 100"
-  );
+  const deleteEntry = await client.query("DELETE FROM testlogs WHERE id = $1", [
+    id,
+  ]);
   return deleteEntry;
 }

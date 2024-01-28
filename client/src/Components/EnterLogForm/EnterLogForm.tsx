@@ -76,7 +76,7 @@ function EnterLogForm() {
       method: "POST",
       // Indicates content being sent or received is json data
       headers: {
-        "Content-TYpe": "application/json",
+        "Content-Type": "application/json",
       },
       // Converts a JavaScript value to a JSON string
       body: JSON.stringify({
@@ -137,7 +137,9 @@ function EnterLogForm() {
         <Form.Label>Description</Form.Label>
         <Form.Control type="text" placeholder="" onChange={handleDescription} />
       </Form.Group>
-      <Button type="submit">Submit</Button>
+      <Button type="submit" href="/logs">
+        Submit
+      </Button>
     </Form>
   );
 }

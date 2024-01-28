@@ -38,21 +38,26 @@ function Logs() {
   }, []);
 
   // Delete an entry in logs table
-  async function deleteEntryFromTable(e: any) {
-    e.preventDefault();
-
-    await fetch("/api/logs", {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+  // I was having trouble with this part of the application, i was missing passing the id into the function
+  async function deleteEntryFromTable(id: number) {
+    try {
+      await fetch(`/api/logs/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      window.location.reload();
+    } catch (error) {
+      console.error("Error deleting entry", error);
+    }
   }
 
   return (
     <Table>
       <thead>
         <tr>
+          <th>id</th>
           <th>Date</th>
           <th>Distance</th>
           <th>Duration</th>
@@ -65,15 +70,21 @@ function Logs() {
         {Array.isArray(logsData) &&
           logsData.map((log) => (
             <tr key={log.id}>
+              <td>{log.id}</td>
               <td>{log.date}</td>
               <td>{log.distance}</td>
               <td>{log.duration}</td>
               <td>{log.pace}</td>
               <td>{log.surface}</td>
               <td>{log.description}</td>
-              <Button type="submit" onClick={deleteEntryFromTable}>
-                X
-              </Button>
+              <td>
+                <Button
+                  type="submit"
+                  onClick={() => deleteEntryFromTable(log.id)}
+                >
+                  X
+                </Button>
+              </td>
             </tr>
           ))}
       </tbody>

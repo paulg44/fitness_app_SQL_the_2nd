@@ -30,11 +30,11 @@ export async function enterLog(req, res) {
 }
 
 // Delete entry from table
-export async function deleteEntry(req, res) {
+export async function deleteEntryByID(req, res) {
   try {
-    const logs = await logsModel.deleteEntry();
+    const logs = await logsModel.deleteEntry(req.params.id);
     console.log(`Success, payload: ${logs}`);
-    res.status(200);
+    res.status(200).json(logs.id);
   } catch (error) {
     console.error(error);
   }
