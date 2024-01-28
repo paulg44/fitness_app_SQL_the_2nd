@@ -1,0 +1,25 @@
+name: Run Fitness App Tests Client Side
+
+on: 
+  push: 
+    branches: [master, main]
+  pull_request: 
+    branches: [master, main]
+
+jobs: 
+  test: 
+    runs-on: ubuntu-latest
+
+    steps: 
+       - name: Checkout Code
+         uses: actions/checkout@v2
+
+       - name: Install dependencies
+         run: |
+           cd fitness-app_SQL_client
+           npm install
+
+       - name: Run Tests
+         run: |
+            cd fitness-app_SQL_client
+            npm test
