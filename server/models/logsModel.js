@@ -31,3 +31,10 @@ export async function deleteEntry(id) {
   ]);
   return deleteEntry;
 }
+
+// Edit entry
+export async function editEntry(id) {
+  const client = await pool.connect();
+  const editEntry = await client.query("UPDATE testlogs WHERE id = $1", [id]);
+  return editEntry;
+}

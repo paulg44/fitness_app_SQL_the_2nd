@@ -13,3 +13,5 @@ logsRoutes.get("/", logsController.getAllLogs);
 logsRoutes.post("/", logsController.enterLog);
 
 logsRoutes.delete("/:id", logsController.deleteEntryByID);
+
+logsRoutes.patch("/:id", logsController.editEntryByID);

@@ -39,3 +39,13 @@ export async function deleteEntryByID(req, res) {
     console.error(error);
   }
 }
+
+export async function editEntryByID(res, req) {
+  try {
+    const logs = await logsModel.editEntry(req.params.id);
+    console.log(`Success, payload ${logs}`);
+    res.status(200).json(logs.id);
+  } catch (error) {
+    console.error(error);
+  }
+}
