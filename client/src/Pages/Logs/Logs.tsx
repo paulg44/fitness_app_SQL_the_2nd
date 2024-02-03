@@ -54,6 +54,7 @@ function Logs() {
   }
 
   // Edit an entry by ID
+  // Have a pop up? form with original data that can be changed
   async function editEntry(id: number) {
     try {
       await fetch(`/api/logs/${id}`, {

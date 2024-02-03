@@ -33,8 +33,12 @@ export async function deleteEntry(id) {
 }
 
 // Edit entry
-export async function editEntry(id) {
+export async function editEntry(body) {
+  const { date, distance, duration, pace, surface, description, id } = body;
   const client = await pool.connect();
-  const editEntry = await client.query("UPDATE testlogs WHERE id = $1", [id]);
+  const editEntry = await client.query(
+    "UPDATE testlogs SET date = $1, distance = $2, duration = $3, pace = $4, surface = $5, description = $6 WHERE id = $7",
+    [date, distance, duration, pace, surface, description, id]
+  );
   return editEntry;
 }

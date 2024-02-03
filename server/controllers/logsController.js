@@ -40,10 +40,10 @@ export async function deleteEntryByID(req, res) {
   }
 }
 
-export async function editEntryByID(res, req) {
+export async function editEntryByID(req, res) {
   try {
     const logs = await logsModel.editEntry(req.params.id);
-    console.log(`Success, payload ${logs}`);
+    console.log(`Success, payload ${logs.id}`);
     res.status(200).json(logs.id);
   } catch (error) {
     console.error(error);
