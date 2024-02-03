@@ -53,6 +53,20 @@ function Logs() {
     }
   }
 
+  // Edit an entry by ID
+  async function editEntry(id: number) {
+    try {
+      await fetch(`/api/logs/${id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+    } catch (error) {
+      console.error("Error editing entry", error);
+    }
+  }
+
   return (
     <Table>
       <thead>
@@ -83,6 +97,11 @@ function Logs() {
                   onClick={() => deleteEntryFromTable(log.id)}
                 >
                   X
+                </Button>
+              </td>
+              <td>
+                <Button type="submit" onClick={() => editEntry(log.id)}>
+                  Edit
                 </Button>
               </td>
             </tr>
